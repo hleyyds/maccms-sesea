@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Demo : jPlayer as an audio player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<script type="text/javascript" src="/static/player/jPlayer/jquery.min.js"></script>
+<script type="text/javascript" src="/static/player/jPlayer/dist/jplayer/jquery.jplayer.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+function browserRedirect() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
+                //电脑端
+                //加载css
+                var linkNode = document.createElement("link");
+                linkNode.setAttribute("rel","stylesheet");
+                linkNode.setAttribute("type","text/css");
+                linkNode.setAttribute("href","/static/player/jPlayer/jplayer.pink.flag.css");
+                document.head.appendChild(linkNode);
+        }else{
+                //手机端
+                //加载css
+                var oMeta = document.createElement('meta');
+                oMeta.name = 'viewport';
+                oMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no';
+                document.getElementsByTagName('head')[0].appendChild(oMeta);
+                var linkNode = document.createElement("link");
+                linkNode.setAttribute("rel","stylesheet");
+                linkNode.setAttribute("type","text/css");
+                linkNode.setAttribute("href","/static/player/jPlayer/jplayer.pink.wap.css");
+                document.head.appendChild(linkNode);
+        }
+}
+browserRedirect();//调用判断当前访问页面是手机端还是移动端
+$(document).ready(function(){
+	$("#jquery_jplayer_1").jPlayer({
+				ready: function (event) {
+			$(this).jPlayer("setMedia", {mp3:parent.MacPlayer.PlayUrl,m4a:parent.MacPlayer.PlayUrl,}).jPlayer('play');
+		},
+		swfPath: "/static/player/jPlayer/dist/jplayer", 
+		supplied: "mp3,m4a",
+		useStateClassSkin: true, 
+	});
+	
+	//播放完成后事件执行
+	$("#jquery_jplayer_1").on($.jPlayer.event.ended,function(e){
+		FonHen_NextData();
+	});	
+		
+});
+function FonHen_NextData(){
+	　　　　if(parent.MacPlayer.PlayLinkNext!=''){
+             top.location.href = parent.MacPlayer.PlayLinkNext;		
+	      }else{
+           alert('已经到最后一集了(⊙o⊙)');
+          };
+};
+//]]>
+</script>
+</head>
+<body>
+	<div id="container">
+	<section  id="content_main">
+		<article>
+		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+		<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+			<div class="jp-type-single">
+				<div class="jp-gui jp-interface">
+					<div class="jp-volume-controls">
+						<button class="jp-mute" role="button" tabindex="0">mute</button>
+						<div class="jp-volume-bar">
+							<div class="jp-volume-bar-value"></div>
+						</div>
+					</div>
+					<div class="jp-controls-holder">
+						<div class="jp-controls">
+							<button class="jp-play" role="button" tabindex="0">play</button>
+						</div>
+						<div class="jp-progress">
+							<div class="jp-seek-bar">
+								<div class="jp-play-bar"></div>
+							</div>
+						</div>
+                        <div class="ec_play_sh">
+    						  <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div><span class="jp-ecxg"> / </span><div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+                        </div>
+					</div>
+				</div>
+				<div class="jp-details">
+					<div class="jp-title" aria-label="title">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+		</article>
+	</section>
+	</div>
+</body>
+</html>

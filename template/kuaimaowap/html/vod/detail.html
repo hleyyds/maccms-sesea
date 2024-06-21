@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset=utf-8>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{$obj.vod_name}详情介绍-{$obj.vod_name}在线观看-{$obj.vod_name}迅雷下载 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name}在线收看,{$obj.vod_name}迅雷下载" />
+    <meta name="description" content="{$obj.vod_name}剧情:{$obj.vod_blurb}" />
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="wap">
+    <script>
+        window.location.href = "{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}";
+    </script>
+</div>
+{include file="public/foot"}
+</body>
+</html>

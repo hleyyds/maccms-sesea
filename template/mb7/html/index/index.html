@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="seo/index"}   
+	{include file="block/include"}
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        	<div class="stui-pannel">
+        		<div class="stui-pannel__hd">
+        			{include file="block/head"}
+        		</div>
+        		<!--{include file="index/slide"}调用后台推荐5轮播-->
+{include file="ads/gonggao"}
+<div style="padding: 0 5px;background-color: white;">
+{include file="ads/tubiao"}
+{include file="ads/hengfu"}
+</div>
+        		<div class="stui-pannel__bd">
+        		{include file="index/new"}
+				{include file="index/list"}	
+        		</div>
+		        {include file="index/links"}	
+        	</div>        	
+        </div>
+    </div>
+	{include file="block/foot"}
+</body>
+</html>

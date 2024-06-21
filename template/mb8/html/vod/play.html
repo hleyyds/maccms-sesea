@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head> 
+  <meta charset="UTF-8"> 
+  <title>{$obj.vod_name}在线播放--{$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name}{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}在线播放_{$maccms.site_name}" />
+    <meta name="description" content="{$obj.vod_name}{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}在线播放_{$maccms.site_name}" />
+     {include file="public/include"}
+</head>
+ <body>
+{include file="public/head"}
+{include file="index/nav"}
+<div class="wrap">
+	<div class="main">
+		<h1>[{$obj.type.type_name}] {$obj.vod_name}</h1>
+		<div class="content clearfix">
+			<div class="player">
+				<div class="player-wrap">
+					<div class="player-box">
+					{$player_data} {$player_js}	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="wrap">
+{maccms:foreach name="obj.vod_play_list" id="vo"}
+<div>
+    <div class="ptop">
+        {$vo.player_info.show}
+    </div>
+    
+    <div>
+        {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+        <a class="w10"  href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">&nbsp;&nbsp;{$vo2.name}</a>
+        {/maccms:foreach}
+        {include file="ads/bofangyewenzi"}<!--播放页文字-->
+    </div>
+</div>
+{/maccms:foreach}
+</div>
+
+<style>
+    .ptop{
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+    .w10{
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    }
+</style>
+
+{include file="vod/like"}
+{include file="public/foot"}
+ </body>
+</html>

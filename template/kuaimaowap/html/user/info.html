@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+	<meta charset=utf-8>
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+	<meta name="format-detection" content="telephone=no" />
+	<title>修改资料 - 会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="public/include"}
+</head>
+<body>
+{include file="public/head1" title="修改资料"}
+<div class="allBgBox wap cf">
+	<div>
+		<div class="cur line40 top40">
+			<form id="fm" name="fm" method="post" action="" >
+				<p><span class="xiang">原始密码：</span><input type="password" name="user_pwd" class="userinput member-input"></p>
+				<p><span class="xiang">新密码：</span><input type="password" name="user_pwd1" class="userinput member-input"><span class="color3">  不修改请留空</span></p>
+				<p><span class="xiang">重复密码：</span><input type="password" name="user_pwd2" class="userinput member-input"></p>
+				<p><span class="xiang">找回密码问题：</span><input type="text" name="user_question" class="userinput member-input" value="{$obj.user_question}"></p>
+				<p><span class="xiang">找回密码答案：</span><input type="text" name="user_answer" class="userinput member-input" value="{$obj.user_answer}"></p>
+				<p><span class="xiang"></span><input type="button" id="btn_submit" class="qzbottom search-button rig10" value="保存"><span class="wjmm"><a href="{:url('user/findpass')}">忘记密码了？</a></span></p>
+				<p><span class="xiang"></span></p>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	$('.btn_unbind').click(function(){
+		var ac = $(this).attr('ac');
+		if(ac!='email' && ac!='phone'){
+			alert('参数错误');
+		}
+		if(confirm('确认解除绑定吗？此操作不可恢复？')) {
+			$.ajax({
+				url: "{:url('user/unbind')}",
+				type: "post",
+				dataType: "json",
+				data: {ac: ac},
+				beforeSend: function () {
+					//开启loading
+				},
+				success: function (r) {
+					alert(r.msg);
+					if(r.code==1){
+						location.href="{:url('user/info')}";
+					}
+				},
+				complete: function () {
+					//结束loading
+				}
+			});
+		}
+	});
+
+	$("#btn_submit").click(function() {
+		var data = $("#fm").serialize();
+		$.ajax({
+			url: "{:url('user/info')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#btn_submit").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/info')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#btn_submit").css("background","#fa4646").val("提交");
+			}
+		});
+	});
+
+</script>
+{include file="public/foot"}
+</body>
+</html>

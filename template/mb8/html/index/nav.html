@@ -1,0 +1,44 @@
+<div class="wrap">
+	<div class="menu clearfix">
+	    {include file="ads/daohangwenzi"}<!--导航文字广告-->
+	    {maccms:type order="asc" by="sort" ids="parent"}
+		<dl>
+			<dt><a href="{:mac_url_type($vo)}">{$vo.type_name}</a></dt>
+			{maccms:type parent="'.$vo['type_id'].'"  order="asc" id="vo2" key="key2"}	
+			<dd><a href="{:mac_url_type($vo2)}">{$vo2.type_name}</a></dd>
+			{/maccms:type}
+		</dl>
+		   {/maccms:type}
+
+<div id="subMenuBox">
+</div>
+
+	</div>
+</div>
+
+
+<div class="wrap pre">
+<form method="get" id="searchform" action="{:mac_url('vod/search')}">
+<input class="w100 inputsearch"  placeholder="输入关键字搜索您想要看的影片..." name="wd"  type="text">
+<button type="submit" class="pou">视频搜索</button>
+</form>
+</div>
+
+<div class="wrap pre">
+ <!--中部图片广告开始-->
+<div id="midBox">
+<div class="wrap">	
+<div class="mod clearfix">
+<div class="row col4"><!--排列方式4-->
+{include file="ads/hengfu"}<!--中部广告-->	
+</div>
+</div>
+</div>
+</div>
+ <!--中部图片广告结束-->
+ {include file="ads/tubiao"}<!--图标-->	
+ {include file="ads/duocaiwenzi"}<!--多色彩文字广告-->
+
+</div>
+
+

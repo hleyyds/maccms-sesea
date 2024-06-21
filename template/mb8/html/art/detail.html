@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+     <meta charset="UTF-8"> 
+    <title>{$obj.art_name} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.art_name}最新资讯,推荐资讯" />
+    <meta name="description" content="{$obj.art_name}最新资讯,推荐资讯" />
+    {include file="public/include"}
+ </head>
+ <body>
+{include file="public/head"}
+{include file="index/nav"}   
+<div class="wrap">
+	<div class="main">
+		<h1>{$obj.art_name}</h1>
+		<div class="content">
+		   	{$obj.art_page_list[$param['page']]['content']}  
+		    
+		</div>
+	</div>
+</div>
+{include file="public/paging"}
+ <script>
+  $(".mac_total").text('{$__PAGING__.record_total}');
+</script>
+{include file="public/foot"}
+ </body>
+</html>

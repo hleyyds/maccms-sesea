@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+     <meta charset="UTF-8"> 
+     <title>{$obj.type_title} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+     {include file="public/include"}
+ </head>
+ <body>
+{include file="public/head"}
+{include file="index/nav"}   
+ <div class="wrap">
+	<div class="mod channel-list">
+		<div class="title"><h3>{$obj.type_name}</h3><span class="total">共有<em class="mac_total"></em>篇文章</span></div>
+		<div class="row col6 clearfix">
+		{maccms:art num="30" type="current" order="desc" by="time" paging="yes" pageurl="art/type"}
+			<dl>
+				<dt><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" target="_blank"><img class="lazyloaded" src="{$maccms.path_tpl}image/loading.svg" data-src="{:mac_url_img($vo.art_pic)}" alt="{$vo.art_name}" /><i></i></a></dt>
+				<dd><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" target="_blank"><h3>{$vo.art_name}</h3></a></dd>
+			</dl>
+		{/maccms:art}	
+		</div>
+	</div>
+</div>
+{include file="public/paging"}
+ <script>
+  $(".mac_total").text('{$__PAGING__.record_total}');
+</script>
+{include file="public/foot"}
+ </body>
+</html>

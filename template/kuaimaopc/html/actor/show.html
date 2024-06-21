@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$maccms.site_name}-明星库</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{include file="public/include"}
+</head><body>
+{include file="public/head"}
+<div class="wap">
+  <div class="actorlist top40">
+    <ul class="cf">
+      {maccms:actor num="24" paging="yes" pageurl="actor/show" order="desc" by="time"}
+      <li class="actorlist_item l">
+        <a class="lazyload actor_thumb" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" data-original="{$vo.actor_pic|mac_url_img}"></a>
+        <div class="actorlist_tit">
+          <a class="text-overflow" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}">{$vo.actor_name}</a>
+        </div>
+      </li>
+      {/maccms:actor}
+    </ul>
+  </div>
+  <div class="top40">
+    {include file="public/paging"}
+  </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

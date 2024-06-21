@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset=utf-8>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+    <meta name="format-detection" content="telephone=no" />
+    <title>最新{$obj.type_name}-推荐{$obj.type_name}-第{$param.page}页筛选 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="wap">
+    <div class="navList">
+        <ul class="comiis_flex">
+            <li class="flex nav-item {if condition="$maccms.aid eq 1"} current{/if}"><a class="nav-link" href="{$maccms.path}">推荐</a></li>
+            {maccms:type ids="parent" order="asc" by="sort"}
+            <li class="flex nav-item {$vo.type_id}={$vo.type_pid} {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"} current{/if}"><a class="nav-link" href="{:mac_url_type($vo)}">{$vo.type_name}</a></li>
+            {/maccms:type}
+        </ul>
+    </div>
+    <div class="ideoListModule top40">
+        <div class="listdh">
+            <ul class="vodlist cf">
+                {maccms:vod num="16" paging="yes" pageurl="vod/show" type="current" order="desc" by="time"}
+                {include file="public/vod_list"}
+                {/maccms:vod}
+            </ul>
+        </div>
+        <div class="top40">
+            {include file="public/paging"}
+        </div>
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

@@ -1,0 +1,12 @@
+<div class="stui-vodlist__head">
+	<a class="more1 pull-right">最近更新&nbsp;<em>{:mac_data_count(0,'today','vod')}</em>&nbsp;部&nbsp;&nbsp;共&nbsp;<em>{:mac_data_count(0,'all','vod')}&nbsp;</em>部<span class="split_line"></span>
+		 </a>						
+	<h3><i class="iconfont icon-wsg"></i>最新视频</h3>	
+</div>
+<ul class="stui-vodlist clearfix">
+	{maccms:vod num="8" type="all" order="desc" by="time" } 
+	<li>
+	{include file="block/vod_box"}											
+	</li>
+{/maccms:vod}
+</ul>

@@ -1,0 +1,17 @@
+{maccms:foreach name="obj.vod_play_list" by="sort" id="vo"}
+<div class="stui-vodlist__head">
+<span class="pull-right1">{$vo.player_info.tip}</span>
+ <a class="sort-button  pull-right" href="javascript:;">排序</a>
+<h3 class="title">{$vo.player_info.show}</h3>	
+<ul class="stui-content__playlist sort-list maxheight clearfix">
+{maccms:foreach name="vo.urls" id="vo2"}
+    <li {if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}class="active"{/if}><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a></li>
+   {/maccms:foreach}
+</ul>
+</div>
+{/maccms:foreach}
+<style>
+    .sort-button{color: #ff658d;}
+    .maxheight{max-height:300px;overflow: auto;}
+.maxheight::-webkit-scrollbar {width: 6px;height: 1px; border-radius:10px; background:#c5c5c5;}
+</style>

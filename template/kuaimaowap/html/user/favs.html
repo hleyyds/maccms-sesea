@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+	<meta charset=utf-8>
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+	<meta name="format-detection" content="telephone=no" />
+	<title>我的收藏 - 会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="public/include"}
+</head>
+<body>
+{include file="public/head1" title="我的收藏"}
+<div class="allBgBox wap">
+	<div>
+		<div class="gong cf">
+			<a href="javascript:;" onClick="MAC.CheckBox.All('ids[]');">全选</a>
+			<a href="javascript:;" onClick="MAC.CheckBox.Other('ids[]');">反选</a>
+			<a href="javascript:;" id="btnDel">删除</a>
+			<a href="javascript:;" id="btnClear">清空</a>
+		</div>
+		<div class="listdh">
+			<ul class="vodlist cf">
+				{volist name="list" id="vo"}
+				{if condition="$vo.ulog_mid eq 1"}
+				<li class="collg l">
+					<div class="vodlistbox">
+						<a class="vodlistthumb lazyload" target="_blank" href="{$vo.data.link}" title="{$vo.data.name}" data-original="{$vo.data.pic}">
+							<span class="play hidden-xs"></span>
+							<span class="pic-text text-right">{$vo.data.type.type_name}</span>
+						</a>
+						<input class="checkbox" type="checkbox" name="ids[]" id="checkbox" value="{$vo.ulog_id}"/>
+						<div class="vodlistdetail">
+							<h4 class="title">
+								<a href="{$vo.data.link}" target="_blank" class="color2" title="{$vo.data.name}">{$vo.data.name}</a>
+							</h4>
+						</div>
+					</div>
+				</li>
+				{/if}
+				{/volist}
+			</ul>
+		</div>
+		{include file="user/fenye"}
+	</div>
+</div>
+<script>
+	function delData(ids,all){
+		var msg ='删除';
+		if(all==1){
+			msg='清空';
+		}
+		if(confirm('确定要'+msg+'记录吗')){
+			$.post("{:url('user/ulog_del')}",{ids:ids,type:2,all:all},function(data) {
+				if (data.code == '1') {
+					alert('删除成功');
+					location.reload();
+				}else {
+					alert('删除失败：' + data.msg);
+				}
+			}, 'json')
+		}
+	}
+	$("#btnClear").click(function(){
+		delData('',1);
+	});
+	$("#btnDel").click(function(){
+		var ids = MAC.CheckBox.Ids('ids[]');
+		if(ids==''){
+			alert("请至少选择一个数据");
+			return;
+		}
+		delData(ids,0);
+	});
+</script>
+{include file="public/foot"}
+</body>
+</html>

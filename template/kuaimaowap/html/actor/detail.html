@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset=utf-8>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧">
+    <meta name="description" content="{$maccms.site_name}演示站为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。">
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head1" title="女优作品"}
+<div class="wap">
+    <div class="ideoListModule">
+        <div class="listdh">
+            <ul class="vodlist cf">
+                {maccms:vod num="all" type="all" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+                {include file="public/vod_list"}
+                {/maccms:vod}
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

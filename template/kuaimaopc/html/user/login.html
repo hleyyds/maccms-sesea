@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户登录 - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="userzdl cf wap" style="background-color: #1f242f;">
+	<div class="reg-w">
+		<form method="post" id="fm" action="">
+			<div class="reg-group">
+				<input type="text" id="user_name" name="user_name" class="userinput reg-control" placeholder="请输入您的登录账号">
+			</div>
+			<div class="reg-group">
+				<input type="password" id="user_pwd" name="user_pwd" class="userinput reg-control" placeholder="请输入您的登录密码">
+			</div>
+			{if condition="$GLOBALS['config']['user']['login_verify'] eq 1"}
+			<div class="reg-group cf">
+				<input type="text" class="l userinput" style="width:60%" id="verify" name="verify" placeholder="请输入验证码">
+				<img class="r" style="width:34%" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"  alt="单击刷新" />
+			</div>
+			{/if}
+			<input type="button" id="btn_submit" class="top20 qzbottom btn-brand btn-sub" value="立即登录">
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+
+	$(function(){
+		$("body").bind('keyup',function(event) {
+			if(event.keyCode==13){ $('#btnLogin').click(); }
+		});
+		$('#btn_submit').click(function() {
+			if ($('#user_name').val()  == '') { alert('请输入用户！'); $("#user_name").focus(); return false; }
+			if ($('#user_pwd').val()  == '') { alert('请输入密码！'); $("#user_pwd").focus(); return false; }
+			if ($('#verify').length> 0 && $('#verify').val()  == '') { alert('请输入验证码！'); $("#verify").focus(); return false; }
+
+			$.ajax({
+				url: "{:url('user/login')}",
+				type: "post",
+				dataType: "json",
+				data: $('#fm').serialize(),
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if(r.code==1){
+						location.href="{:url('user/index')}";
+					}
+					else{
+						alert(r.msg);
+						$('#verify_img').click();
+					}
+				},
+				complete: function () {
+					$("#btn_submit").css("background","#fa4646").val("立即登录");
+				}
+			});
+
+		});
+	});
+
+</script>
+{include file="public/foot"}
+</body>
+</html>

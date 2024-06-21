@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="seo/vod_detail"}   
+	{include file="block/include"}
+</head>
+<body>
+	{include file="block/head"}
+    <div class="container">
+        <div class="row">      
+			<div class="stui-pannel clearfix">
+				<div class="stui-pannel-box">
+					<div class="stui-pannel__bd">
+						<div class="stui-content">
+							<div class="stui-content__thumb">											
+								<a class="pic" href="{:mac_url_vod_detail($obj)}" title="{$obj.vod_name}">
+									<img class="lazyload" data-original="{:mac_url_img($obj.vod_pic)}" src="{$maccms.path_tpl}statics/img/load.gif" />
+								</a>												
+							</div>
+							<div class="stui-content__detail">
+							<h1 class="title wdetail">{$obj.vod_name}</h1>	
+  				<p class="left">类型：{$obj.type.type_name}</p>
+  				<p class="left">更新：{$obj.vod_time|date='Y-m-d',###}</p>
+  				<p class="left">永久域名： <font color="#FF0000">{$maccms.site_url}</font></p>
+								<p class="desc detail">
+									<span class="left">简介：</span>
+									<span class="detail-sketch">{$obj.vod_content|mac_filter_html|mac_substring=50}</span>
+									<span class="detail-content" style="display: none;">{$obj.vod_content|mac_filter_html}</span>
+									<a class="detail-more" href="javascript:;">详情 <i class="icon iconfont icon-moreunfold"></i></a>
+								</p>							    
+								<div class="play-btn">
+									{if condition="$obj.vod_play_list"}    
+									<a href="{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}">立即播放</a>
+									{/if}
+									{if condition="$maccms.user_status eq 1"}
+			                       	{if condition="$user.group.group_id eq 1"}
+			                       	<a href="{:mac_url('user/login')}" class="sc">收藏</a>
+			                       		{else}
+									<a href="javascript:;" class="mac_ulog sc" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}">收藏</a>
+									{/if}
+								{/if}
+								</div>
+							</div>	
+					
+						</div>
+
+                    <div style="clear:both;"></div>
+                         {notempty name="obj[vod_play_from]"}
+						{include file="vod/playlist1"}
+				     {/notempty}
+				       
+				
+				
+						<div class="stui-vodlist__head">						
+							<h3>猜你喜欢</h3>						
+						</div>
+						<ul class="stui-vodlist clearfix">
+							{maccms:vod num="12" type="current" order="desc" by="time"}
+							<li>
+								{include file="block/vod_box"}														
+							</li>			
+							{/maccms:vod}
+						</ul>						
+					</div>			
+				</div>						
+			</div>
+        </div>
+    </div>
+    <span class="mac_ulog_set hide" alt="浏览记录" data-type="1" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+    <span class="mac_history_set hide" alt="历史记录" data-name="[{$obj.type.type_name}]{$obj.vod_name}" data-pic="{$obj.vod_pic|mac_url_img}"></span>
+	{include file="block/foot"}
+</body>
+</html>

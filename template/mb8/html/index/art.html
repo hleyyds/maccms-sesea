@@ -1,0 +1,16 @@
+
+<div class="wrap">
+    {maccms:type order="asc" by="sort" ids="34" id="vo1" key="key1" flag="art"}
+	<div class="mod index-list">
+		<div class="title"><h3><a href="{:mac_url_type($vo1,[],'type')}">最新图片</a></h3></div>
+		<div class="row col6 clearfix">
+		   	{maccms:art num="12" type="'.$vo1['type_id'].'" order="desc" by="time"}
+			<dl>
+				<dt><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" target="_blank"><img class="lazyloaded" src="{$maccms.path_tpl}image/loading.svg" data-src="{:mac_url_img($vo.art_pic)}" alt="{$vo.art_name}" /><i></i></a></dt>
+				<dd><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" target="_blank"><h3>{$vo.art_name}</h3></a></dd>
+			</dl>
+			{/maccms:art}
+		</div>
+	</div>
+	{/maccms:type}
+</div>

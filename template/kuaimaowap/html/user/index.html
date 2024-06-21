@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+	<meta charset=utf-8>
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+	<meta name="format-detection" content="telephone=no" />
+	<title>会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="会员中心">
+	<meta name="description" content="会员中心">
+	{include file="public/include"}
+</head>
+<body>
+{include file="public/head1" title="会员中心"}
+<div class="allBgBox wap">
+	<div class="leftSideBox top40">
+		<div class="userInfoBox">
+			<p class="name">{$obj.user_name}</p>
+			<ul class="middle cf">
+				<li><p>积分(个)</p><h3>{$obj.user_points}</h3></li>
+				<li><p>等级</p><h3>{$obj.group.group_name}</h3></li>
+			</ul>
+			<a class="buttonLine" href="{:url('user/upgrade')}">{if$user.group.group_name==VIP会员}续费会员{else}升级会员{/if}</a>
+		</div>
+	</div>
+	<div class="">
+		<ul class="comiis_flex top40">
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-xihuan"></i></div>
+				<div class="text"><a class="nav-link" href="{:url('user/favs')}">我的收藏</a></div>
+			</li>
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-all"></i></div>
+				<div class="text"><a class="nav-link" href="{:url('user/plays')}">播放记录</a></div>
+			</li>
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-keyboardlight"></i></div>
+				<div class="text"><a class="nav-link" href="{:url('user/info')}">修改密码</a></div>
+			</li>
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-choiceness"></i></div>
+				<div class="text"><a class="nav-link" href="{:url('user/cash')}">积分提现</a></div>
+			</li>
+		</ul>
+		<ul class="comiis_flex top40">
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-friendfamous"></i></div>
+				<div class="text"><a class="nav-link" href="{:url('user/reward')}">推广记录</a></div>
+			</li>
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-fankui"></i></div>
+				<div class="text"><a class="nav-link" href="{:mac_url('label/eq')}">常见问题</a></div>
+			</li>
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-kefu"></i></div>
+				<div class="text"><a class="nav-link" href="{:mac_url('gbook/index')}">留言反馈</a></div>
+			</li>
+			<li class="flex bottomnav-item">
+				<div class="ionc"><i class="iconfont icon-chexiao"></i></div>
+				<div class="text"><a class="nav-link" href="{:mac_url('user/logout')}"">推出账号</a></div>
+		</ul>
+	</div>
+	<div class="rightSideBox top40">
+		<div><h2>分享赚积分</h2></div>
+		<div class="top40">
+			{if $GLOBALS['config']['user']['invite_reg_points'] gt 0}
+			<p><span class="xiang">推广注册链接：</span>
+				<input id="url" class="userinput member-input" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg')}?uid={$obj.user_id}" size="70" style="width:96%">
+			</p>
+			{/if}
+			{if $GLOBALS['config']['user']['invite_visit_points'] gt 0}
+			<p class="top20"><span class="xiang">推广访问链接：</span>
+				<input id="url2" class="userinput member-input" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit')}?uid={$obj.user_id}" size="70" style="width:96%">
+			</p>
+			{/if}
+		</div>
+		<div class="usets top40">
+			<p>*登录后复制推荐地址发送给您的好友*</p>
+			<p>*当您的好用通过您分享的链接访问注册本站后你可获得相应积分*</p>
+			<p>*推广用户获得积分可申请体现哟~*</p>
+			<p>*请不要利用工具作弊，作弊者一旦发现会封禁IP*</p>
+		</div>
+	</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

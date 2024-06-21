@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset=utf-8>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="wap">
+    <div class="ideoListModule top40">
+        <div class="listdh">
+            <ul class="vodlist cf">
+                {maccms:vod num="16" paging="yes" pageurl="vod/search" order="desc" by="time"}
+                {include file="public/vod_list"}
+                {/maccms:vod}
+            </ul>
+        </div>
+        <div class="top40">
+            {include file="public/paging"}
+        </div>
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>
+

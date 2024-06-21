@@ -1,0 +1,26 @@
+
+<!--登录弹窗开始-->
+<div class="mac_login">
+    <form class="mac_login_form">
+        <div class="login_form_group top20">
+            <input type="text" class="mac_u_name" name="user_name" placeholder="手机/登录账号">
+        </div>
+        <div class="login_form_group top20">
+            <input type="password" class="mac_u_pwd" name="user_pwd" placeholder="登录密码">
+        </div>
+        {if condition="$GLOBALS['config']['user']['login_verify'] eq 1"}
+        <div class="login_form_group cf top20">
+            <input type="text" class="mac_u_verify" name="verify" placeholder="请输入验证码">
+            <img class="mac_verify_img" src="{:url('verify/index')}" onclick="this.src = this.src+'?'">
+        </div>
+        {/if}
+        <div class="login_form_group top20">
+            <input type="button" class="login_form_submit" value="登录">
+        </div>
+        <div class="login_form_link top20 cf">
+            <a href="{:url('user/reg')}" class="color3 l">注册</a>
+            <a href="{:url('user/findpass')}" class="color3 r">忘记密码</a>
+        </div>
+    </form>
+</div>
+<!--登录弹窗结束-->

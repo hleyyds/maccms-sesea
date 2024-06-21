@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+       <meta charset="UTF-8"> 
+     <title>搜索结果{$param.wd}-{$maccms.site_name}</title>
+     <meta name="keywords" content="{$param.wd}-{$maccms.site_name}" />
+     <meta name="description" content="{$param.wd}-{$maccms.site_name}" />
+     {include file="public/include"}
+ </head>
+<body>
+ {include file="public/head"}
+
+{include file="index/nav"}   
+ <div class="wrap">
+	<div class="mod channel-list">
+		<div class="title"><h3>搜索"{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}"</h3><span class="total">共有<em class="mac_total"></em>个视频</span></div>
+		<div class="row col5 clearfix">
+		{maccms:vod num="30" type="current" order="desc" by="time" paging="yes" pageurl="vod/search"}
+		{include file="public/vodbox"}
+		{/maccms:vod}	
+		</div>
+	</div>
+</div>
+{include file="public/paging"}
+ <script>
+  $(".mac_total").text('{$__PAGING__.record_total}');
+</script>
+{include file="public/foot"}
+ </body>
+</html>

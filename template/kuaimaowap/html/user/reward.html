@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+	<meta charset=utf-8>
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+	<meta name="format-detection" content="telephone=no" />
+	<title>分销记录 - 会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="public/include"}
+</head>
+<body>
+{include file="public/head1" title="分销记录"}
+<div class="allBgBox wap cf">
+	<div>
+		<div class="list">
+			<ul class="fn-clear cf">
+				{if condition="$param.level eq ''"}
+				<li class="cur">一级下线</li>
+				{else/}
+				<li><a href="{:url('user/reward')}">一级下线</a></li>
+				{/if}
+				{if condition="$param.level eq '2'"}
+				<li class="cur">二级下线</li>
+				{else/}
+				<li><a href="{:url('user/reward')}?level=2">二级下线</a></li>
+				{/if}
+				{if condition="$param.level eq '3'"}
+				<li class="cur">三级下线</li>
+				{else/}
+				<li><a href="{:url('user/reward')}?level=3">三级下线</a></li>
+				{/if}
+			</ul>
+		</div>
+		<table width="100%" border="0" cellspacing="1" cellpadding="0" class="top20 table">
+			<tr>
+				<td width="80" align="center" valign="middle" bgcolor="#f7f7f7">编号</td>
+				<td width="100" align="center" valign="middle" bgcolor="#f7f7f7">会员</td>
+				<td width="140" align="center" valign="middle" bgcolor="#f7f7f7">时间</td>
+			</tr>
+			<form id="form1" name="form1" method="post">
+				{volist name="list" id="vo"}
+				<tr>
+					<td align="center" valign="middle" bgcolor="#FFFFFF">{$vo.user_id}</td>
+					<td align="center" valign="middle" bgcolor="#FFFFFF">{$vo.user_name}</td>
+					<td align="center" valign="middle" bgcolor="#FFFFFF">{$vo.user_reg_time|mac_day}</td>
+				</tr>
+				{/volist}
+			</form>
+		</table>
+		{include file="user/fenye"}
+	</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

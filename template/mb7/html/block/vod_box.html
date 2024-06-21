@@ -1,0 +1,11 @@
+<div class="stui-vodlist__box">
+	<a class="stui-vodlist__thumb lazyload" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">						
+		<span class="play hidden-xs"></span>	
+		<span class="pic-text1 text-right"><b>{$vo.type.type_name}</b></span>
+		<span class="pic-text text-right"><p>播放次数: {$vo.vod_hits}次</p></span>
+	</a>									
+	<div class="stui-vodlist__detail">
+		<h4 class="title text-overflow"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></h4>
+		<p>{$vo.type.type_name} - {$vo.vod_time|date='Y-m-d',###}</p>
+	</div>												
+</div>	

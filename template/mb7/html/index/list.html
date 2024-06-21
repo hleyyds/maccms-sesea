@@ -1,0 +1,20 @@
+	                <!-- 分类列表 -->
+					{maccms:type ids="0" order="asc" by="sort" id="vo1" key="key1" flag="vod"}
+					<div class="stui-vodlist__head">
+						<a class="pull-right" href="{:mac_url_type($vo1,[],'show')}">更多 <i class="iconfont icon-more"></i></a>
+						<p>
+						{maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+                			<a  href="{:mac_url_type($vo2,[],'show')}" class="pull-right text-muted">{$vo2.type_name}</a>
+                		{/maccms:type}
+						</p>
+						<h3><a href="{:mac_url_type($vo1,[],'show')}"><i class="iconfont icon-wsg"></i>{$vo1.type_name}</a></h3>
+					</div>
+					<ul class="stui-vodlist clearfix">
+						{maccms:vod num="8" type="'.$vo1['type_id'].'" order="desc" by="time"}
+						<li>
+							{include file="block/vod_box"}											
+						</li>
+						{/maccms:vod}
+					</ul>
+					{/maccms:type}
+					<!-- end 分类列表 -->

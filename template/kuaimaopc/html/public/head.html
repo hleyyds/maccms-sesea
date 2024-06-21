@@ -1,0 +1,54 @@
+<div class="topHeaderBg">
+    <div class="wap topHeaderBox cf">
+        <div class="l">
+            <a href="javascript:;" class="gonggao">网站公告</a>
+            <span class="publicTopHeaderLine"></span>
+            <a href="{:mac_url('label/eq')}">常见问题</a>
+            <span class="publicTopHeaderLine"></span>
+            <a href="{:mac_url('gbook/index')}" target="_blank">留言反馈</a>
+        </div>
+        <div class="r">
+            <a href="{:mac_url('user/reward')}" target="_blank"><i class="iconfont icon-dianpu rig4"></i>代理后台</a>
+        </div>
+    </div>
+</div>
+<div class="wap publicAllContentBg">
+    <div class="middleHeaderBox cf">
+        <div class="l"><img src="{$maccms.path_tpl}images/logo.png" alt="{$maccms.site_name}"/></div>
+        <div class="r">
+            <a href="{:mac_url('user/upgrade')}" class="color1 recharge"><img src="{$maccms.path_tpl}images/zuan.png" />开通vip</a>
+            <a href="javascript:;" class="color1 recharge mac_user"><img src="{$maccms.path_tpl}images/us.png" />登录/注册</a>
+        </div>
+    </div>
+    <div class="bottomHeaderNavBox">
+        <div class="l">
+            <ul class="navList">
+                <li class="nav-item {if condition="$maccms.aid eq 1"} current{/if}"><a class="nav-link" href="{$maccms.path}">首页</a></li>
+                <li class="nav-item {if condition="$maccms.aid eq 2"} current{/if}"><a class="nav-link" href="{:mac_url('map/index')}">最近更新</a></li>
+                <li class="nav-item {if condition="$maccms.aid eq 30"} current{/if}"><a class="nav-link" href="{:mac_url_topic_index()}">专题</a></li>
+                <li class="nav-item {if condition="$maccms.aid eq 80"} current{/if}"><a class="nav-link" href="{:mac_url('actor/index')}">女优</a></li>
+                {maccms:type ids="parent" order="asc" by="sort"}
+                <li class="nav-item {$vo.type_id}={$vo.type_pid} {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"} current{/if}"><a class="nav-link" href="{:mac_url_type($vo)}">{$vo.type_name}</a></li>
+                {/maccms:type}
+            </ul>
+        </div>
+        <div class="r top20">
+            <form id="search" name="search" method="get" action="{:mac_url('vod/search')}" onSubmit="return qrsearch();">
+                <input type="text" name="wd" class="search-input mac_wd" value="{$param.wd}" placeholder="请在此处输入影片名或演员名称" />
+                <span><i class="iconfont icon-sousuo"></i></span>
+                <input type="submit" id="searchbutton"  class="search-button mac_search" value="GO" />
+            </form>
+        </div>
+    </div>
+</div>
+<div class="gongao fadeInUp animated" style="display:none">
+    <div style="padding: 20px;">
+        <img src="{$maccms.path_tpl}images/logo.png" style="padding-top:20px;margin-left: auto; margin-right: auto; display: block;">
+        <h2 style="margin-top: 10px; color: rgb(255, 255, 255); font-size: 20px; font-weight: 300; text-align: center;">请牢记最新域名</h2>
+        <div style="margin-top: 20px; color: rgb(255, 255, 255); font-size: 18px; font-weight: 300; text-align: center;">
+            国内主用域名：<a class="el-link el-link--primary" style="font-size: 20px;"><span class="el-link--inner">qq1.com</span></a></div>
+        <div style="margin-top: 20px; color: rgb(255, 255, 255); font-size: 18px; font-weight: 300; text-align: center;">
+            国内备用域名：<a class="el-link el-link--primary" style="font-size: 20px;"><span class="el-link--inner">qq2.com</span></a></div>
+        <button type="button" class="top20 gonhide"><span>确定</span></button>
+    </div>
+</div>

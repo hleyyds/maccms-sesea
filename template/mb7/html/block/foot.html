@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="row">
+		<div class="stui-foot clearfix">
+		    <p class="text-center hidden-xs">本网站只提供web页面服务，并不提供资源存储，也不参与录制、上传<br>若本站收录的节目无意侵犯了贵司版权，请发邮件至{$maccms.site_email} （我们会在3个工作日内删除侵权内容，谢谢。）</p>		
+			<p class="text-center hidden-xs">
+			{$maccms.site_url} 版权所有 联系邮箱：<a href="mailto:{maccms:email}">{$maccms.site_email}</a></p>	
+			<p class="text-muted text-center visible-xs">Copyright © 2020-2021 &nbsp;{$maccms.site_tj}</p>
+          <p class="text-muted text-center hidden-xs">
+			<a class="fed-font-xiv" href="{:mac_url('rss/index')}" target="_blank">RSS订阅</a>
+			<span class="fed-font-xiv"> - </span>
+			<a class="fed-font-xiv" href="{:mac_url('rss/baidu')}" target="_blank">百度蜘蛛</a>
+			<span class="fed-font-xiv"> - </span>
+			<a class="fed-font-xiv" href="{:mac_url('rss/google')}" target="_blank">谷歌地图</a>
+			<span class="fed-font-xiv"> - </span>
+			<a class="fed-font-xiv" href="{:mac_url('rss/sm')}" target="_blank">神马爬虫</a>
+			<span class="fed-font-xiv fed-hide-xs"> - </span>
+			<a class="fed-font-xiv fed-hide-xs" href="{:mac_url('rss/sogou')}" target="_blank">搜狗蜘蛛</a>
+			<span class="fed-font-xiv fed-hide-xs"> - </span>
+			<a class="fed-font-xiv fed-hide-xs" href="{:mac_url('rss/so')}" target="_blank">奇虎地图</a>
+			<span class="fed-font-xiv fed-hide-xs"> - </span>
+			<a class="fed-font-xiv fed-hide-xs" href="{:mac_url('rss/bing')}" target="_blank">必应爬虫</a>
+		</p>
+		</div>
+	</div>
+</div>
+
+<div class="fixed_right_bar">
+<div class="ant-back-top dbicon" style="display:none;"><i class="icon iconfont icon-less"></i></div>
+</div>
+
+<div class="hide">{$maccms.site_tj}</div>
+
+
+<script type="text/javascript">
+$(function(){	
+	$(window).scroll(function() {		
+		if($(window).scrollTop() >= 100){
+			$('.ant-back-top').fadeIn(300); 
+		}else{    
+			$('.ant-back-top').fadeOut(300);    
+		}  
+	});
+	$('.ant-back-top').click(function(){
+	$('html,body').animate({scrollTop: '0px'}, 800);});	
+});
+</script>

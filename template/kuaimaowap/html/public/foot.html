@@ -1,0 +1,54 @@
+<div style="height: 70px;"></div>
+<div class="fbottom">
+    <ul class="comiis_flex">
+        <li class="flex bottomnav-item">
+            {if condition="$maccms.aid eq 1"}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/001.png" /></div>
+            <div class="text"><a class="color3 nav-link" href="{$maccms.path}">首页</a></div>
+            {else/}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/01.png" /></div>
+            <div class="text"><a class="nav-link" href="{$maccms.path}">首页</a></div>
+            {/if}
+        </li>
+        <li class="flex bottomnav-item">
+            {if condition="$maccms.aid eq 30"}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/002.png" /></div>
+            <div class="text"><a class="color3 nav-link" href="{:mac_url_topic_index()}">专题</a></div>
+            {else/}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/02.png" /></div>
+            <div class="text"><a class="nav-link" href="{:mac_url_topic_index()}">专题</a></div>
+            {/if}
+        </li>
+        <li class="flex bottomnav-item">
+            {if condition="$maccms.aid eq 80"}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/003.png" /></div>
+            <div class="text"><a class="color3 nav-link" href="{:mac_url('actor/index')}">女优</a></div>
+            {else/}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/03.png" /></div>
+            <div class="text"><a class="nav-link" href="{:mac_url('actor/index')}">女优</a></div>
+            {/if}
+        </li>
+        <li class="flex bottomnav-item">
+            {if condition="$maccms.aid eq 6"}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/004.png" /></div>
+            <div class="text">
+                {if condition="$GLOBALS['user']['user_id']" gt 0}
+                <a class="nav-link color3" href="{:mac_url('user/index')}">我的</a>
+                {else/}
+                <a class="color3 nav-link" href="{:mac_url('user/login')}">我的</a>
+                {/if}
+            </div>
+            {else/}
+            <div class="ionc"><img src="{$maccms.path_tpl}images/04.png" /></div>
+            <div class="text">
+                {if condition="$GLOBALS['user']['user_id']" gt 0}
+                <a class="nav-link" href="{:mac_url('user/index')}">我的</a>
+                {else/}
+                <a class="nav-link" href="{:mac_url('user/login')}">我的</a>
+                {/if}
+            </div>
+            {/if}
+        </li>
+    </ul>
+</div>
+<div style="display:none"> {$maccms.site_tj} </div>

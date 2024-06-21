@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html data-n-head-ssr="" lang="zh-cmn-Hans" data-n-head="lang">
+<head>
+    <meta charset=utf-8>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name=”apple-mobile-web-app-status-bar-style” content=black” />
+    <meta name="format-detection" content="telephone=no" />
+    <title>最新更新-{$maccms.site_name}</title>
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="wap">
+    <div class="ideoListModule top40">
+        <div class="listdh">
+            <ul class="vodlist cf">
+                {maccms:vod paging="yes" pageurl="map/index" num="16" order="desc" by="time"}
+                {include file="public/vod_list"}
+                {/maccms:vod}
+            </ul>
+        </div>
+        <div class="top40">
+            {include file="public/paging"}
+        </div>
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

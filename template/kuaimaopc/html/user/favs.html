@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>我的收藏 - 会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="allBgBox wap cf">
+	<div class="leftSideBox top40 l">
+		<div class="userInfoBox">
+			<p class="name">{$obj.user_name}</p>
+			<ul class="middle cf">
+				<li><p>积分(个)</p><h3>{$obj.user_points}</h3></li>
+				<li><p>等级</p><h3>{$obj.group.group_name}</h3></li>
+			</ul>
+			<a class="buttonLine" href="{:url('user/upgrade')}">{if$user.group.group_name==VIP会员}续费会员{else}升级会员{/if}</a>
+		</div>
+		<div class="navBox">
+			<ul>
+				<li><a href="{:url('user/index')}">会员首页</a></li>
+				<li><a class="color3" href="{:url('user/favs')}">我的收藏</a></li>
+				<li><a href="{:url('user/plays')}">播放记录</a></li>
+				<li><a href="{:url('user/info')}">修改密码</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="rightSideBox top40 r">
+		<div><h2>我的收藏</h2></div>
+		<div class="gong top20">
+			<a href="javascript:;" onClick="MAC.CheckBox.All('ids[]');">全选</a>
+			<a href="javascript:;" onClick="MAC.CheckBox.Other('ids[]');">反选</a>
+			<a href="javascript:;" id="btnDel">删除</a>
+			<a href="javascript:;" id="btnClear">清空</a>
+		</div>
+		<div class="listdh">
+			<ul class="vodlist cf">
+				{volist name="list" id="vo"}
+				{if condition="$vo.ulog_mid eq 1"}
+				<li class="collg l" style="width: 220px;">
+					<div class="vodlistbox">
+						<a class="vodlistthumb lazyload" target="_blank" href="{$vo.data.link}" title="{$vo.data.name}" data-original="{$vo.data.pic}">
+							<span class="play hidden-xs"></span>
+							<span class="pic-text text-right">{$vo.data.type.type_name}</span>
+						</a>
+						<input class="checkbox" type="checkbox" name="ids[]" id="checkbox" value="{$vo.ulog_id}"/>
+						<div class="vodlistdetail">
+							<h4 class="title">
+								<a href="{$vo.data.link}" target="_blank" class="color2" title="{$vo.data.name}">{$vo.data.name}</a>
+							</h4>
+						</div>
+					</div>
+				</li>
+				{/if}
+				{/volist}
+			</ul>
+		</div>
+		{include file="user/fenye"}
+	</div>
+</div>
+<script>
+	function delData(ids,all){
+		var msg ='删除';
+		if(all==1){
+			msg='清空';
+		}
+		if(confirm('确定要'+msg+'记录吗')){
+			$.post("{:url('user/ulog_del')}",{ids:ids,type:2,all:all},function(data) {
+				if (data.code == '1') {
+					alert('删除成功');
+					location.reload();
+				}else {
+					alert('删除失败：' + data.msg);
+				}
+			}, 'json')
+		}
+	}
+	$("#btnClear").click(function(){
+		delData('',1);
+	});
+	$("#btnDel").click(function(){
+		var ids = MAC.CheckBox.Ids('ids[]');
+		if(ids==''){
+			alert("请至少选择一个数据");
+			return;
+		}
+		delData(ids,0);
+	});
+</script>
+{include file="public/foot"}
+</body>
+</html>

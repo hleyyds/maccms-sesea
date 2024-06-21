@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>最新{$obj.type_title}-推荐{$obj.type_title}-第{$param.page}页 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="wap">
+    <div class="ideoListModule top40">
+        <div class="listdh">
+            <ul class="vodlist cf">
+                {maccms:vod num="16" paging="yes" pageurl="vod/show" type="current" order="desc" by="time"}
+                {include file="public/vod_list"}
+                {/maccms:vod}
+            </ul>
+        </div>
+        <div class="top40">
+            {include file="public/paging"}
+        </div>
+    </div>
+</div>
+{include file="public/foot"}
+</body>
+</html>
